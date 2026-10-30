@@ -21,6 +21,8 @@ site/
   css/style.css
   js/
     bs.js          pricing + grecques (unités desk : vega/pt, theta/jour, rho/pt)
+    market.js      modèle de marché simulé (smile, term structure)
+    strat.js       stratégies multi-jambes : coût, P&L, grecques nettes
     charts.js      graphiques SVG maison (ligne, histogramme)
     ui.js          sliders, quiz, callouts, progression (localStorage)
     glossary.js    glossaire + popover au clic

@@ -9,8 +9,11 @@ import iv from './l10-iv.js';
 import skew from './l11-skew.js';
 import chain from './l12-chain.js';
 import earnings from './l13-earnings.js';
+import strategies from './l14-strategies.js';
+import builder from './l15-builder.js';
 import portfolio from './l7-portfolio.js';
 import hedging from './l8-hedging.js';
+import flashcards from './l16-flashcards.js';
 import cheatsheet from './l9-cheatsheet.js';
 
-export default [options, pricing, delta, gamma, vega, theta, rho, iv, skew, chain, earnings, portfolio, hedging, cheatsheet];
+export default [options, pricing, delta, gamma, vega, theta, rho, iv, skew, chain, earnings, strategies, builder, portfolio, hedging, flashcards, cheatsheet];

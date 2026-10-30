@@ -51,6 +51,12 @@ export const GLOSSARY = {
   volume: ['Volume', "Nombre de contrats échangés pendant la séance. Un volume faible et un spread large signalent peu de liquidité."],
   vrp: ['Variance risk premium', "En moyenne, l'IV est supérieure à la volatilité réalisée ensuite : les vendeurs d'options sont payés pour porter le risque."],
   earnings: ['Earnings (résultats)', "Publication des résultats d'une entreprise : événement attendu, qui fait monter l'IV avant puis la fait chuter après (IV crush)."],
+  spread: ['Spread (vertical)', "Achat d'une option et vente d'une autre de même type et même échéance mais de strike différent. Réduit le coût et borne le gain et la perte."],
+  collar: ['Collar', "Action détenue + put acheté (protection) + call vendu (qui finance le put). Coût quasi nul, plage de P&L bornée."],
+  ironcondor: ['Iron condor', "Vente d'un strangle + achat de deux options plus éloignées pour limiter le risque. Gagne si le marché reste dans une fourchette."],
+  calendar: ['Calendar spread', "Vente d'une option courte et achat d'une option de même strike mais d'échéance plus lointaine. Profite du temps qui passe et de la vol longue."],
+  debitcredit: ['Debit / Credit', "Débit : la stratégie coûte de l'argent à l'entrée. Crédit : elle en rapporte (on encaisse plus de prime qu'on n'en paie)."],
+  breakeven: ['Breakeven (point mort)', "Niveau de spot auquel le P&L du trade est nul."],
   charm: ['Charm', "Sensibilité du delta au passage du temps (∂Δ/∂t). Explique pourquoi le delta bouge même si le spot ne bouge pas."],
 };
 

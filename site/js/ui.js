@@ -38,6 +38,14 @@ export function controls(el, specs, onChange, state = {}) {
           onChange(state);
         }),
       );
+    } else if (s.type === 'select') {
+      wrap.innerHTML =
+        `<div class="ctl-head"><span>${s.label}</span>${info}</div>` +
+        `<select aria-label="${s.label}">${s.options.map((o) => `<option value="${o.v}"${o.v === s.value ? ' selected' : ''}>${o.l}</option>`).join('')}</select>`;
+      wrap.querySelector('select').addEventListener('change', (e) => {
+        state[s.key] = e.target.value;
+        onChange(state);
+      });
     } else {
       const fmt = s.fmt || ((v) => nf(v, 0));
       wrap.innerHTML =
@@ -119,5 +127,20 @@ export function setDone(id, on) {
     localStorage.setItem(KEY, JSON.stringify([...s]));
   } catch {
     /* storage unavailable: progress simply isn't remembered */
+  }
+}
+
+export function loadSet(key) {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(key) || '[]'));
+  } catch {
+    return new Set();
+  }
+}
+export function saveSet(key, set) {
+  try {
+    localStorage.setItem(key, JSON.stringify([...set]));
+  } catch {
+    /* storage unavailable */
   }
 }
