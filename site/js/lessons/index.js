@@ -18,5 +18,6 @@ import hedging from './l8-hedging.js';
 import exam from './l19-exam.js';
 import flashcards from './l16-flashcards.js';
 import cheatsheet from './l9-cheatsheet.js';
+import next from './l20-next.js';
 
-export default [options, pricing, delta, gamma, vega, theta, rho, secondOrder, american, iv, skew, chain, earnings, strategies, builder, portfolio, hedging, exam, flashcards, cheatsheet];
+export default [options, pricing, delta, gamma, vega, theta, rho, secondOrder, american, iv, skew, chain, earnings, strategies, builder, portfolio, hedging, exam, flashcards, cheatsheet, next];
