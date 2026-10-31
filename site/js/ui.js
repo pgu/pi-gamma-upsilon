@@ -74,7 +74,7 @@ export function controls(el, specs, onChange, state = {}) {
 }
 
 /** questions: [{ q, opts: [...], a: index, why }] */
-export function quiz(el, questions, onPerfect) {
+export function quiz(el, questions, onPerfect, onFinish) {
   let right = 0;
   let done = 0;
   el.innerHTML =
@@ -106,6 +106,7 @@ export function quiz(el, questions, onPerfect) {
         if (done === questions.length) {
           el.querySelector('.q-score').textContent = `Score : ${right} / ${questions.length}`;
           if (right === questions.length && onPerfect) onPerfect();
+          if (onFinish) onFinish(right, questions.length);
         }
       }),
     );

@@ -5,8 +5,8 @@ import { T } from '../glossary.js';
 
 export default {
   id: 'rho',
-  title: 'Rho (ρ) & au-delà',
-  blurb: 'La sensibilité aux taux, puis un aperçu des grecques de 2ᵉ ordre.',
+  title: 'Rho (ρ)',
+  blurb: 'La sensibilité aux taux d\'intérêt.',
   minutes: 10,
   html: () => `
     <p class="lead">Le ${T('rho')} répond à : <b>« si les taux montent de 1 point, de combien l'option gagne-t-elle ? »</b></p>
@@ -29,16 +29,7 @@ export default {
 
     ${callout('pro', 'En pratique, sur un desk', `Le risque de taux d'un book d'options actions est généralement mineur et souvent couvert avec des futures ou swaps de taux. Les desks qui gèrent de longues maturités (produits structurés, LEAPS) suivent rho de près.`)}
 
-    <h2>Pour aller plus loin : les grecques de 2ᵉ ordre</h2>
-    <p>Les cinq grecques vues jusqu'ici suffisent pour comprendre 90 % du métier. Voici la suite que tu rencontreras sur un desk :</p>
-    <table class="tbl">
-      <thead><tr><th>Grecque</th><th>Mesure</th><th>Pourquoi on s'y intéresse</th></tr></thead>
-      <tbody>
-        <tr><td>${T('vanna')}</td><td>∂Δ/∂σ</td><td>Le delta change quand la vol change : critique pour les stratégies de skew.</td></tr>
-        <tr><td>${T('volga')}</td><td>∂ν/∂σ</td><td>Le vega change quand la vol change : risque de « convexité de vol ».</td></tr>
-        <tr><td>${T('charm')}</td><td>∂Δ/∂t</td><td>Le delta dérive avec le temps, même sans mouvement de spot : à anticiper pour le hedging du week-end.</td></tr>
-      </tbody>
-    </table>
+    ${callout('info', 'Pour aller plus loin', `Les cinq grecques vues jusqu'ici suffisent pour comprendre 90 % du métier. La leçon suivante présente les grecques de 2ᵉ ordre (${T('vanna')}, ${T('volga')}, ${T('charm')}) : celles qui mesurent comment delta et vega eux-mêmes bougent.`)}
 
     <h2>Quiz</h2>
     <div data-quiz></div>

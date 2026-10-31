@@ -1,5 +1,7 @@
 # Les grecques en finance
 
+🌐 **Site en ligne : https://pgu.github.io/pi-gamma-upsilon/**
+
 Cours interactif (français, termes financiers en anglais) pour débutant complet : delta, gamma, vega, theta, rho, puis application « desk » (P&L explain, delta-hedging).
 
 Site statique, zéro dépendance, zéro build : HTML + CSS + ES modules + SVG.
@@ -28,7 +30,7 @@ site/
     glossary.js    glossaire + popover au clic
     app.js         routeur (#/leçon) et navigation
     lessons/       une leçon = { id, title, blurb, minutes, html(), init(root, done) }
-tests/bs.test.mjs
+tests/            bs.test.mjs (Black-Scholes, 2ᵉ ordre, arbre binomial), strat.test.mjs
 ```
 
 ### Ajouter une leçon

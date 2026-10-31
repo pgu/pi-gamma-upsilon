@@ -57,6 +57,9 @@ export const GLOSSARY = {
   calendar: ['Calendar spread', "Vente d'une option courte et achat d'une option de même strike mais d'échéance plus lointaine. Profite du temps qui passe et de la vol longue."],
   debitcredit: ['Debit / Credit', "Débit : la stratégie coûte de l'argent à l'entrée. Crédit : elle en rapporte (on encaisse plus de prime qu'on n'en paie)."],
   breakeven: ['Breakeven (point mort)', "Niveau de spot auquel le P&L du trade est nul."],
+  american: ['American option', "Option exerçable à tout moment jusqu'à l'échéance. C'est le cas de la plupart des options sur actions et ETF cotées aux États-Unis."],
+  earlyex: ['Early exercise (exercice anticipé)', "Exercer une option américaine avant l'échéance. Optimal surtout pour un put très ITM (intérêts sur le strike) ou un call juste avant un gros dividende."],
+  binomial: ['Binomial tree (arbre binomial)', "Méthode de valorisation qui découpe le temps en pas : à chaque pas le spot monte ou baisse. Permet de valoriser les options américaines."],
   charm: ['Charm', "Sensibilité du delta au passage du temps (∂Δ/∂t). Explique pourquoi le delta bouge même si le spot ne bouge pas."],
 };
 

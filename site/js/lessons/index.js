@@ -5,6 +5,8 @@ import gamma from './l3-gamma.js';
 import vega from './l4-vega.js';
 import theta from './l5-theta.js';
 import rho from './l6-rho.js';
+import secondOrder from './l17-second-order.js';
+import american from './l18-american.js';
 import iv from './l10-iv.js';
 import skew from './l11-skew.js';
 import chain from './l12-chain.js';
@@ -13,7 +15,8 @@ import strategies from './l14-strategies.js';
 import builder from './l15-builder.js';
 import portfolio from './l7-portfolio.js';
 import hedging from './l8-hedging.js';
+import exam from './l19-exam.js';
 import flashcards from './l16-flashcards.js';
 import cheatsheet from './l9-cheatsheet.js';
 
-export default [options, pricing, delta, gamma, vega, theta, rho, iv, skew, chain, earnings, strategies, builder, portfolio, hedging, flashcards, cheatsheet];
+export default [options, pricing, delta, gamma, vega, theta, rho, secondOrder, american, iv, skew, chain, earnings, strategies, builder, portfolio, hedging, exam, flashcards, cheatsheet];
