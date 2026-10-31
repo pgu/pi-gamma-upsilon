@@ -6,6 +6,6 @@
   "description": "Cours interactif : Les grecques en finance (Greeks playground)",
   "scripts": {
     "start": "python3 -m http.server 8000 -d site",
-    "test": "node --test tests/"
+    "test": "node --test"
   }
 }
