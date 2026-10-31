@@ -85,3 +85,44 @@ export function impliedVol(target, o) {
   }
   return (lo + hi) / 2;
 }
+
+/**
+ * Second-order Greeks.
+ *   vanna: change of delta for +1 vol point        (d delta / d sigma)
+ *   volga: change of vega (per point) for +1 point (d vega / d sigma)
+ *   charm: change of delta after one calendar day
+ */
+export function secondOrder(o) {
+  const { S, T, sigma, q = 0 } = o;
+  if (T <= 0 || sigma <= 0) return { vanna: 0, volga: 0, charm: 0 };
+  const [d1, d2] = d1d2(o);
+  const eq = Math.exp(-q * T);
+  const nd1 = pdf(d1);
+  const vanna = (-eq * nd1 * d2) / sigma / 100;
+  const volga = (S * eq * nd1 * Math.sqrt(T) * d1 * d2) / sigma / 10000;
+  const charm = T > 1 / 365 ? greeks({ ...o, T: T - 1 / 365 }).delta - greeks(o).delta : 0;
+  return { vanna, volga, charm };
+}
+
+/** Cox-Ross-Rubinstein binomial tree; american = early exercise allowed. */
+export function binomial(o, steps = 150, american = true) {
+  const { S, K, T, r, sigma, q = 0, type } = o;
+  if (T <= 0) return intrinsic(o);
+  const call = type === 'call';
+  const dt = T / steps;
+  const u = Math.exp(sigma * Math.sqrt(dt));
+  const d = 1 / u;
+  const disc = Math.exp(-r * dt);
+  const p = Math.min(1, Math.max(0, (Math.exp((r - q) * dt) - d) / (u - d)));
+  const payoff = (s) => (call ? Math.max(s - K, 0) : Math.max(K - s, 0));
+  const v = new Float64Array(steps + 1);
+  for (let j = 0; j <= steps; j++) v[j] = payoff(S * Math.pow(u, 2 * j - steps));
+  for (let i = steps - 1; i >= 0; i--) {
+    for (let j = 0; j <= i; j++) {
+      let val = disc * (p * v[j + 1] + (1 - p) * v[j]);
+      if (american) val = Math.max(val, payoff(S * Math.pow(u, 2 * j - i)));
+      v[j] = val;
+    }
+  }
+  return v[0];
+}

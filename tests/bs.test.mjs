@@ -51,3 +51,32 @@ test('implied vol round-trips', async () => {
   }
   assert.equal(impliedVol(0.0001, { S: 100, K: 50, T: 0.3, r: 0.02, type: 'call' }), null);
 });
+
+test('second-order greeks match finite differences', async () => {
+  const { secondOrder } = await import('../site/js/bs.js');
+  for (const [K, type] of [[100, 'call'], [110, 'call'], [90, 'put']]) {
+    const o = { S: 100, K, T: 0.4, r: 0.03, sigma: 0.25, type };
+    const so = secondOrder(o);
+    const h = 0.005;
+    const at = (s) => greeks({ ...o, sigma: s });
+    near(so.vanna, (at(o.sigma + h).delta - at(o.sigma - h).delta) / (2 * h) / 100, 1e-5, `vanna K=${K}`);
+    near(so.volga, ((at(o.sigma + h).vega - at(o.sigma - h).vega) / (2 * h)) / 100, 1e-5, `volga K=${K}`);
+    const next = greeks({ ...o, T: o.T - 1 / 365 }).delta - greeks(o).delta;
+    near(so.charm, next, 1e-12, 'charm');
+  }
+});
+
+test('binomial: European converges to Black-Scholes; American >= European', async () => {
+  const { binomial } = await import('../site/js/bs.js');
+  const o = { S: 100, K: 100, T: 1, r: 0.05, sigma: 0.2 };
+  for (const type of ['call', 'put']) {
+    near(binomial({ ...o, type }, 600, false), price({ ...o, type }), 0.02, `euro ${type}`);
+  }
+  const itmPut = { S: 70, K: 100, T: 1, r: 0.06, sigma: 0.25, type: 'put' };
+  assert.ok(binomial(itmPut, 300, true) > binomial(itmPut, 300, false) + 0.1);
+  near(binomial(itmPut, 300, true), 30, 1e-9, 'deep ITM american put = intrinsic');
+  const call = { ...o, type: 'call' };
+  near(binomial(call, 300, true), binomial(call, 300, false), 1e-9, 'american call, no dividend');
+  const divCall = { S: 120, K: 100, T: 1, r: 0.02, sigma: 0.2, q: 0.08, type: 'call' };
+  assert.ok(binomial(divCall, 300, true) > binomial(divCall, 300, false) + 0.05);
+});
