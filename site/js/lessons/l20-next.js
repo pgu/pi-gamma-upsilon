@@ -88,7 +88,10 @@ export default {
     </ul>
     ${callout('info', 'Pourquoi des liens vers les pages d\'accueil', 'Les adresses profondes des sites changent souvent. Utilise la recherche du site pour trouver le sujet voulu (« option greeks », « implied volatility »…).')}
 
-    <h2>🐍 Premier script : Black-Scholes en Python</h2>
+    <h2>🐍 Python : notebooks du cours</h2>
+    <p>Six notebooks refont les playgrounds en Python (Black-Scholes et grecques, volatilité implicite et smile, delta-hedging Monte Carlo, option chain avec pandas, stratégies et P&amp;L explain, options américaines). Ils sont livrés avec leurs résultats et testés contre le moteur JavaScript du site : <a href="https://github.com/pgu/pi-gamma-upsilon/tree/main/notebooks" target="_blank" rel="noopener noreferrer">dossier <code>notebooks/</code> sur GitHub</a>.</p>
+
+    <h3>Premier script : Black-Scholes en 10 lignes</h3>
     <p>Ce que fait la leçon 1, en 10 lignes, sans bibliothèque externe. Le résultat doit être 10,4506 (call, S = K = 100, T = 1 an, r = 5 %, σ = 20 %).</p>
 <pre><code>from math import log, sqrt, exp
 from statistics import NormalDist

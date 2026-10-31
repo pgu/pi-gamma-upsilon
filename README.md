@@ -10,10 +10,14 @@ Site statique, zéro dépendance, zéro build : HTML + CSS + ES modules + SVG.
 
 ```sh
 npm start        # http://localhost:8000  (python3 -m http.server -d site)
-npm test         # vérifie le pricer Black-Scholes et les grecques (différences finies)
+npm test         # vérifie le pricer Black-Scholes, les grecques, l'arbre binomial et les stratégies (JS)
 ```
 
 Les ES modules exigent un serveur HTTP : ouvrir `index.html` en `file://` ne marche pas.
+
+## Notebooks Python
+
+Le dossier [`notebooks/`](notebooks/) contient six notebooks (avec résultats) qui refont les playgrounds en Python : Black-Scholes et grecques, volatilité implicite et smile, delta-hedging Monte Carlo, option chain avec pandas, stratégies et P&L explain, options américaines. Voir [`notebooks/README.md`](notebooks/README.md). Leur bibliothèque Python est testée contre le moteur JavaScript (`python -m pytest` dans `notebooks/`).
 
 ## Structure
 
